@@ -9,3 +9,12 @@ services:
       MYSQL_DATABASE: chat_nestjs
     ports:
       - "3306:3306"
+
+  redis:
+    image: "redis:6.2"
+    container_name: "redis_chat"
+    ports:
+      - "6379:6379"
+    restart: always
+    environment:
+      - REDIS_REPLICATION_MODE=master

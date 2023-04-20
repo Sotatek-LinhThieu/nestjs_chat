@@ -11,6 +11,11 @@ export class UsersService {
         private usersRepository: Repository<Users>,
     ) { }
 
+    async getUsers() {
+        const usersList = await this.usersRepository.find();
+        return usersList
+    }
+
     async createUser(body: Users) {
         const hashedPass = await bcrypt.hash(body.password, 1);
         await this.usersRepository.insert({ ...body, password: hashedPass });
