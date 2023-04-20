@@ -1,7 +1,7 @@
-import { Admin } from 'src/admins/admin.entity';
+import { Admins } from 'src/admins/admin.entity';
 import { ChatItem } from 'src/chat-items/chat_item.entity';
 import { Reaction } from 'src/reactions/reaction.entity';
-import { User } from 'src/users/user.entity';
+import { Users } from 'src/users/user.entity';
 import { Entity, Column, PrimaryGeneratedColumn, BaseEntity, OneToOne, ManyToOne } from 'typeorm';
 
 @Entity()
@@ -18,13 +18,13 @@ export class ChatItemReaction extends BaseEntity {
     reaction_id: number;
 
     @Column({ type: 'bigint', unsigned: true })
-    @ManyToOne(() => User, (user) => user.id)
+    @ManyToOne(() => Users, (user) => user.id)
     user_id: number;
 
     @Column({ type: 'bigint', unsigned: true })
-    @ManyToOne(() => Admin, (admin) => admin.id)
+    @ManyToOne(() => Admins, (admin) => admin.id)
     admin_id: number;
 
-    @Column({ length: 6, type: 'timestamp', nullable: false, default: () => "CURRENT_TIMESTAMP" })
+    @Column({ type: 'timestamp', nullable: false, default: () => "CURRENT_TIMESTAMP" })
     createMs: number;
 }

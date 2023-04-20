@@ -1,10 +1,8 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Message } from './messages/message.entity';
-import { MessagesModule } from './messages/messages.module';
-import { User } from './users/user.entity';
-import { ChatBox } from './chat-boxes/chatBox.entity';
+import { Users } from './users/user.entity';
 import { UsersModule } from './users/users.module';
+import { AdminsModule } from './admins/admins.module';
 
 @Module({
   imports: [
@@ -14,13 +12,13 @@ import { UsersModule } from './users/users.module';
       port: 3306,
       username: 'root',
       password: 'root',
-      database: 'test',
-      entities: [User, ChatBox, Message],
+      database: 'chat_nestjs',
+      entities: [Users],
       autoLoadEntities: true, // every entity registered through the forFeature() method will be automatically added to the entities array of the configuration object
       synchronize: true, // shouldn't be used in production - otherwise you can lose production data
     }),
-    MessagesModule,
-    UsersModule
+    UsersModule,
+    AdminsModule
   ],
 })
 export class AppModule { }

@@ -11,6 +11,6 @@ export class Reaction extends BaseEntity {
     @Column({ type: 'varchar', length: 100, nullable: false })
     link: string;
 
-    @Column({ length: 6, type: 'timestamp', nullable: false, default: () => "CURRENT_TIMESTAMP" }) // missing DEFAULT_GENERATED
+    @Column({ type: 'timestamp', nullable: false, default: () => "CURRENT_TIMESTAMP" }) // missing DEFAULT_GENERATED
     createMs: number;
 }
