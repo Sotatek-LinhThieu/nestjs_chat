@@ -1,19 +1,23 @@
 import { Controller, Get, Param, Post, Delete } from '@nestjs/common';
 import { log } from 'console';
+import { MessagesService } from './messages.service';
+import { MsgHistoryParams } from './interfaces/message.interface';
 
 @Controller('messages')
 export class MessagesController {
+  constructor(private messagesService: MessagesService) { }
+
   @Get()
   getMessagesHistory(
-    @Param() params: { box_id: string; limit: number; point: number },
-  ): string {
-    log(params);
-    return `This action returns messages of box chat ${params.box_id}`;
+    @Param() params: MsgHistoryParams,
+  ) {
+    // return 'This action send a new msg';
+    return this.messagesService.getHistory(params);
   }
 
   @Post()
   sendMessage(
-    @Param() params: { box_id: string; user_id: string; msg: string },
+    @Param() params: { box_id: number; user_id: string; msg: string },
   ): string {
     log(params);
     return 'This action send a new msg';
